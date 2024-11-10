@@ -23,12 +23,14 @@ public class Calculator implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420,550);
         frame.setLayout(null);
-
+        frame.getContentPane().setBackground(Color.DARK_GRAY);
 
         textfield = new JTextField();
         textfield.setBounds(50, 25, 300, 50);
         textfield.setFont(myFont);
         textfield.setEditable(false);
+        textfield.setBackground(Color.DARK_GRAY);
+        textfield.setForeground(Color.DARK_GRAY);
 
         addButton = new JButton("+");
         subButton = new JButton("-");
@@ -67,7 +69,7 @@ public class Calculator implements ActionListener {
         panel = new JPanel();
         panel.setBounds(50, 100, 300, 300);
         panel.setLayout(new GridLayout(4, 4, 10, 10));
-
+        panel.setBackground(Color.DARK_GRAY);
         panel.add(numberButtons[1]);
         panel.add(numberButtons[2]);
         panel.add(numberButtons[3]);
