@@ -109,7 +109,9 @@ public class Calculator implements ActionListener {
             }
         }
         if(e.getSource() == decimalButton){
-            textfield.setText(textfield.getText().concat(String.valueOf(".")));
+            if(!textfield.getText().contains(".")) {
+                textfield.setText(textfield.getText().concat(String.valueOf(".")));
+            }
         }
         if(e.getSource() == addButton){
             num1 = Double.parseDouble(textfield.getText());
@@ -149,7 +151,8 @@ public class Calculator implements ActionListener {
                     break;
             }
             textfield.setText(String.valueOf(result));
-            num1 = result;
+            num1 = result; //to keep the result as num 1 for further operation
+            operator = ' '; //resets the operator
         }
         if(e.getSource() == clrButton){
             textfield.setText("");
@@ -160,6 +163,11 @@ public class Calculator implements ActionListener {
             for (int i = 0; i < string.length()-1; i++){
                 textfield.setText(textfield.getText()+string.charAt(i));
             }
+        }
+        if(e.getSource() == negButton){
+            double temp = Double.parseDouble(textfield.getText());
+            temp*= -1;
+            textfield.setText(String.valueOf(temp));
         }
     }
 }
