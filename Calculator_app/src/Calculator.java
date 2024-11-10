@@ -19,6 +19,12 @@ public class Calculator implements ActionListener {
 
 
     Calculator(){
+        UIManager.put("Label.foreground", Color.WHITE);
+        UIManager.put("Button.foreground", Color.WHITE);
+        UIManager.put("TextField.background", Color.DARK_GRAY); // Set the text field background globally
+        UIManager.put("Panel.background", Color.DARK_GRAY); // Set panel background
+        UIManager.put("Button.background", Color.GRAY);
+
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420,550);
@@ -29,7 +35,8 @@ public class Calculator implements ActionListener {
         textfield.setBounds(50, 25, 300, 50);
         textfield.setFont(myFont);
         textfield.setEditable(false);
-
+        textfield.setBackground(Color.DARK_GRAY);
+        textfield.setBackground(Color.WHITE);
 
         addButton = new JButton("+");
         subButton = new JButton("-");
