@@ -10,6 +10,7 @@ public class TicTacToe implements ActionListener {
     JPanel title_panel = new JPanel();
     JPanel button_panel = new JPanel();
     JLabel textfield = new JLabel();
+    JButton resetButton = new JButton();
     JButton[] buttons = new JButton[9];
     boolean player1_turn;
 
@@ -27,8 +28,12 @@ public class TicTacToe implements ActionListener {
         textfield.setText("TIC-TAC-TOE");
         textfield.setOpaque(true);
 
+        resetButton.addActionListener(e -> resetGame());
+
         title_panel.setLayout(new BorderLayout());
         title_panel.setBounds(0,0,800,100);
+        title_panel.add(textfield, BorderLayout.CENTER);
+        title_panel.add(resetButton, BorderLayout.EAST);
 
         button_panel.setLayout(new GridLayout(3, 3));
         button_panel.setBackground(new Color(150, 150, 150));
@@ -119,7 +124,7 @@ public class TicTacToe implements ActionListener {
             xWins(2, 4, 6);
         }
         // Checking for O Player
-        if ((buttons[0].getText() == "O") && (buttons[1].getText() == "O") && (buttons[2].getText() == "O")){
+        else if ((buttons[0].getText() == "O") && (buttons[1].getText() == "O") && (buttons[2].getText() == "O")){
             oWins(0, 1, 2);
         }
         else if ((buttons[3].getText() == "O") && (buttons[4].getText() == "O") && (buttons[5].getText() == "O")) {
@@ -143,6 +148,18 @@ public class TicTacToe implements ActionListener {
         else if ((buttons[2].getText() == "O") && (buttons[4].getText() == "O") && (buttons[6].getText() == "O")) {
             oWins(2, 4, 6);
         }
+        else if (isBoardFull()) {
+            textfield.setText("Draw! , Play Again");
+            disableButtons();
+        }
+    }
+    public boolean isBoardFull(){
+        for(JButton button :  buttons){
+            if(button.getText().equals("")){
+                return false;
+            }
+        }
+        return true;
     }
 
     public void xWins(int a, int b, int c){
@@ -165,5 +182,19 @@ public class TicTacToe implements ActionListener {
             buttons[i].setEnabled(false);
         }
         textfield.setText("O Wins");
+    }
+    public void disableButtons(){
+        for(JButton button : buttons){
+            button.setEnabled(false);
+        }
+    }
+    public void resetGame(){
+        for(int i = 0; i < 9; i++){
+            buttons[i].setText("");
+            buttons[i].setEnabled(true);
+            buttons[i].setBackground(null);
+        }
+        textfield.setText("Tic-Tac-toe");
+        firstTurn();
     }
 }
