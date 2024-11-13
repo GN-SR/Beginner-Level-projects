@@ -23,7 +23,7 @@ public class MyFrame extends JFrame {
         this.setTitle("Java Clock");
         this.setLayout(new FlowLayout());
         this.setSize(350, 200);
-        this.setResizable(false);
+        this.setResizable(true);
         frame = new JFrame();
         frame.setBackground(Color.BLACK);
 
