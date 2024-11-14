@@ -112,8 +112,11 @@ public class GamePanel extends JPanel implements ActionListener {
             running = false;
         }
         // to check if it touches bottom border
-        if (y[0] < SCREEN_HEIGHT){
+        if (y[0] > SCREEN_HEIGHT){
             running = false;
+        }
+        if(!running){
+            timer.stop();
         }
     }
     public void gameOver(Graphics e){
