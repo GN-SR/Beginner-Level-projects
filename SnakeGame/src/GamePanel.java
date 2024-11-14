@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.Time;
 import java.util.*;
-import java.util.Timer;
+import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener {
 
@@ -25,15 +25,26 @@ public class GamePanel extends JPanel implements ActionListener {
     Random random;
 
     GamePanel(){
-
+        random = new Random();
+        this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+        this.setBackground(Color.BLACK);
+        this.setFocusable(true);
+        this.addKeyListener(new MyKeyAdapter());
+        startGame();
     }
     public void startGame(){
-
+        newApple();
+        running = true;
+        timer = new Timer(DELAY,this);
+        timer.start();
     }
     public void paintComponent(Graphics g){
-
+        super.paintComponent(g);
     }
     public void draw(Graphics g){
+
+    }
+    public void newApple(){
 
     }
     public void move(){
