@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Time;
 import java.util.*;
+import java.util.Timer;
 
 public class GamePanel extends JPanel implements ActionListener {
 
@@ -19,6 +21,8 @@ public class GamePanel extends JPanel implements ActionListener {
     int appleY;
     char direction = 'R';
     boolean running = false;
+    Timer timer;
+    Random random;
 
     GamePanel(){
 
