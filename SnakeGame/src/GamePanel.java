@@ -104,7 +104,15 @@ public class GamePanel extends JPanel implements ActionListener {
             running = false;
         }
         // Checking for right border
+        if (x[0] > SCREEN_WIDTH){
+            running = false;
+        }
+        // checking if head touches top border
         if (y[0] < 0){
+            running = false;
+        }
+        // to check if it touches bottom border
+        if (y[0] < SCREEN_HEIGHT){
             running = false;
         }
     }
