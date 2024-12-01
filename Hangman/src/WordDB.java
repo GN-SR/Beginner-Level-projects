@@ -11,6 +11,8 @@ public class WordDB {
         try {
             wordList = HashMap<>();
             categories = new ArrayList<>();
+
+
         }
     }
 
