@@ -9,10 +9,10 @@ public class WordDB {
 
     public WordDB(){
         try {
-            wordList = HashMap<>();
+            wordList = new HashMap<>();
             categories = new ArrayList<>();
 
-
+            String filePath = getClass().getClassLoader().getResource(CommonConstants.DATA_PATH).getPath();
         }
     }
 
