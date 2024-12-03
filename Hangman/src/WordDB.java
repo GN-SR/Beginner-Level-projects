@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 
 public class WordDB {
 
@@ -33,6 +34,17 @@ public class WordDB {
         }catch (IOException e){
             System.out.println("Error: " + e);
         }
+    }
+
+    public String[] loadChallenge(){
+        Random rand = new Random();
+        String category = categories.get(rand.nextInt(categories.size()));
+
+        String[] categoryValues = wordList.get(category);
+        String word = categoryValues[rand.nextInt(categoryValues.length)];
+
+        return new String[]{category.toUpperCase(), word.toUpperCase()};
+
     }
 
 }
