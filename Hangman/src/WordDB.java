@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class WordDB {
@@ -23,7 +25,13 @@ public class WordDB {
                 String[] parts = line.split(",");
 
                 String category = parts[0];
+                categories.add(category);
+
+                String values[] = Arrays.copyOfRange(parts, 1, parts.length);
+                wordList.put(category, values);
             }
+        }catch (IOException e){
+            System.out.println("Error: " + e);
         }
     }
 
