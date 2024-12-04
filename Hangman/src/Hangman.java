@@ -42,7 +42,8 @@ public class Hangman extends JFrame {
                     categoryLabel.getPreferredSize().height
         );
 
-        getContentPane().add(hangmanImage);
         getContentPane().add(categoryLabel);
+        getContentPane().add(hangmanImage);
+
     }
 }
