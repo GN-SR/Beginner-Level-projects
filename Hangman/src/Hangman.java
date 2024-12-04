@@ -35,7 +35,14 @@ public class Hangman extends JFrame {
         categoryLabel.setForeground(Color.WHITE);
         categoryLabel.setBackground(CommonConstants.SECONDARY_COLOR);
         categoryLabel.setBorder(BorderFactory.createLineBorder(CommonConstants.SECONDARY_COLOR));
+        categoryLabel.setBounds(
+                0,
+                    hangmanImage.getPreferredSize().height - 28,
+                    CommonConstants.FRAME_SIZE.width,
+                    categoryLabel.getPreferredSize().height
+        );
 
         getContentPane().add(hangmanImage);
+        getContentPane().add(categoryLabel);
     }
 }
