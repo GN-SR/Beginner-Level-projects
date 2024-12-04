@@ -8,7 +8,7 @@ public class Hangman extends JFrame {
     private String[] wordChallenge;
 
     private final WordDB wordDB;
-    private JLabel hangmanImage;
+    private JLabel hangmanImage, categoryLabel;
 
     public Hangman(){
         super("Hangman Game");
@@ -27,6 +27,9 @@ public class Hangman extends JFrame {
     private void addGuiComponents(){
         hangmanImage = CustomTools.loadImage(CommonConstants.IMAGE_PATH);
         hangmanImage.setBounds(0, 0, hangmanImage.getPreferredSize().width, hangmanImage.getPreferredSize().height);
+
+        categoryLabel = new JLabel(wordChallenge[0]);
+        categoryLabel.setBorder(BorderFactory.createLineBorder(CommonConstants.SECONDARY_COLOR));
 
         getContentPane().add(hangmanImage);
     }
