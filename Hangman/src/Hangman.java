@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.beans.Customizer;
 
 public class Hangman extends JFrame {
@@ -29,6 +30,10 @@ public class Hangman extends JFrame {
         hangmanImage.setBounds(0, 0, hangmanImage.getPreferredSize().width, hangmanImage.getPreferredSize().height);
 
         categoryLabel = new JLabel(wordChallenge[0]);
+        categoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        categoryLabel.setOpaque(true);
+        categoryLabel.setForeground(Color.WHITE);
+        categoryLabel.setBackground(CommonConstants.SECONDARY_COLOR);
         categoryLabel.setBorder(BorderFactory.createLineBorder(CommonConstants.SECONDARY_COLOR));
 
         getContentPane().add(hangmanImage);
