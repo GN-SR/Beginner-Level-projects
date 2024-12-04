@@ -1,6 +1,11 @@
 import javax.swing.*;
 
 public class Hangman extends JFrame {
+
+    private final WordDB wordDB;
+
+    private int incorrectGuesses;
+
     public Hangman(){
         super("Hangman Game");
         setSize(CommonConstants.FRAME_SIZE);
@@ -8,5 +13,13 @@ public class Hangman extends JFrame {
         setLocationRelativeTo(null);
         setLayout(null);
         setResizable(false);
+
+        wordDB = new WordDB()
+
+        addGuiComponents();
+    }
+
+    private void addGuiComponents(){
+
     }
 }
