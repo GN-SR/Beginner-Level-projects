@@ -1,10 +1,14 @@
 import javax.swing.*;
+import java.beans.Customizer;
 
 public class Hangman extends JFrame {
 
-    private final WordDB wordDB;
-
     private int incorrectGuesses;
+
+    private String[] wordChallenge;
+
+    private final WordDB wordDB;
+    private JLabel hangmanImage;
 
     public Hangman(){
         super("Hangman Game");
@@ -14,12 +18,13 @@ public class Hangman extends JFrame {
         setLayout(null);
         setResizable(false);
 
-        wordDB = new WordDB()
+        wordDB = new WordDB();
+        wordChallenge = wordDB.loadChallenge();
 
         addGuiComponents();
     }
 
     private void addGuiComponents(){
-
+        hangmanImage = CustomTools.loadImage();
     }
 }
