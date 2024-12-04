@@ -25,6 +25,9 @@ public class Hangman extends JFrame {
     }
 
     private void addGuiComponents(){
-        hangmanImage = CustomTools.loadImage();
+        hangmanImage = CustomTools.loadImage(CommonConstants.IMAGE_PATH);
+        hangmanImage.setBounds(0, 0, hangmanImage.getPreferredSize().width, hangmanImage.getPreferredSize().height);
+
+        getContentPane().add(hangmanImage);
     }
 }
