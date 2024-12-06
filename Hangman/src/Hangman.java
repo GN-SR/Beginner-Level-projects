@@ -54,5 +54,7 @@ public class Hangman extends JFrame {
 
         getContentPane().add(categoryLabel);
         getContentPane().add(hangmanImage);
+        getContentPane().add(hiddenWordLabel);
+
     }
 }
