@@ -27,6 +27,6 @@ public class CustomTools {
                 hiddenWord += " ";
             }
         }
-        return hiddenWord
+        return hiddenWord;
     }
 }

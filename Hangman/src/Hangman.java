@@ -42,10 +42,17 @@ public class Hangman extends JFrame {
                     categoryLabel.getPreferredSize().height
         );
 
+        //hidden word
+        hiddenWordLabel = new JLabel(CustomTools.hideWords(wordChallenge[1]));
+        hiddenWordLabel.setForeground(Color.WHITE);
+        hiddenWordLabel.setBounds(
+                0,
+                categoryLabel.getY() + categoryLabel.getPreferredSize().height + 50,
+                CommonConstants.FRAME_SIZE.width,
+                hiddenWordLabel.getPreferredSize().height
+        );
+
         getContentPane().add(categoryLabel);
         getContentPane().add(hangmanImage);
-
-        //hidden word
-        hiddenWordLabel = new JLabel();
     }
 }
