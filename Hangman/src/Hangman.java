@@ -106,7 +106,8 @@ public class Hangman extends JFrame implements ActionListener {
         if(command.equals("Reset")){
             resetGame();
         } else if (command.equals("Quit")) {
-            
+            dispose();
+            return;
         }
     }
 
