@@ -50,6 +50,7 @@ public class Hangman extends JFrame implements ActionListener {
         //hidden word
         hiddenWordLabel = new JLabel(CustomTools.hideWords(wordChallenge[1]));
         hiddenWordLabel.setForeground(Color.WHITE);
+        hiddenWordLabel.setHorizontalAlignment(SwingConstants.CENTER);
         hiddenWordLabel.setBounds(
                 0,
                 categoryLabel.getY() + categoryLabel.getPreferredSize().height + 50,
@@ -78,6 +79,12 @@ public class Hangman extends JFrame implements ActionListener {
             letterButtons[currentIndex] = button;
             buttonPanel.add(letterButtons[currentIndex]);
         }
+
+        JButton resetButton = new JButton("Reset");
+        resetButton.setForeground(Color.WHITE);
+        resetButton.setBackground(CommonConstants.SECONDARY_COLOR);
+        resetButton.addActionListener(this);
+        buttonPanel.add(resetButton);
 
         getContentPane().add(categoryLabel);
         getContentPane().add(hangmanImage);
