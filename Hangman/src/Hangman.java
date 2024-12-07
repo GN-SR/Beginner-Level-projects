@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.Customizer;
 
-public class Hangman extends JFrame {
+public class Hangman extends JFrame implements ActionListener {
 
     private int incorrectGuesses;
 
@@ -65,10 +67,26 @@ public class Hangman extends JFrame {
         );
         buttonPanel.setLayout(gridLayout);
 
+        for (char c = 'A'; c <= 'Z'; c++){
+            JButton button = new JButton(Character.toString(c));
+            button.setBackground(CommonConstants.PRIMARY_COLOR);
+            button.setForeground(Color.white);
+            button.addActionListener(this);
+
+            int currentIndex = c - 'A';
+
+            letterButtons[currentIndex] = button;
+            buttonPanel.add(letterButtons[currentIndex]);
+        }
 
         getContentPane().add(categoryLabel);
         getContentPane().add(hangmanImage);
         getContentPane().add(hiddenWordLabel);
+        getContentPane().add(buttonPanel);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
     }
 }
