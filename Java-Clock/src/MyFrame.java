@@ -6,13 +6,14 @@ import java.util.Calendar;
 public class MyFrame extends JFrame {
 
     private final SimpleDateFormat timeFormat;
-    private final SimpleDateFormat dayFormat;
     private final SimpleDateFormat dateFormat;
+    private final SimpleDateFormat dayFormat;
     private final JLabel timeLabel;
-    private final JLabel dayLabel;
     private final JLabel dateLabel;
+    private final JLabel dayLabel;
 
     public MyFrame() {
+        // Set modern Look and Feel
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -21,50 +22,58 @@ public class MyFrame extends JFrame {
 
         // Frame setup
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("Modern Java Clock");
-        this.setSize(400, 250);
-        this.setLayout(new GridLayout(3, 1)); // Use GridLayout for clean alignment
-        this.getContentPane().setBackground(new Color(30, 30, 30)); // Dark modern background
-        this.setResizable(true);
+        this.setTitle("Fliqlo Style Clock");
+        this.setUndecorated(true); // No title bar for fullscreen aesthetic
+        this.setSize(600, 400); // Compact size
+        this.getContentPane().setBackground(Color.BLACK); // Fully black background
+        this.setLayout(new GridBagLayout());
+        this.setResizable(false);
 
-        // Initialize formats
+        // Formats for time, date, and day
         timeFormat = new SimpleDateFormat("hh:mm:ss a");
+        dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
         dayFormat = new SimpleDateFormat("EEEE");
-        dateFormat = new SimpleDateFormat("MMMMM dd, yyyy");
 
         // Time Label
-        timeLabel = new JLabel("", SwingConstants.CENTER);
-        timeLabel.setFont(new Font("Verdana", Font.BOLD, 40));
-        timeLabel.setForeground(new Color(0, 200, 255));
-        timeLabel.setOpaque(true);
-        timeLabel.setBackground(new Color(50, 50, 50));
-
-        // Day Label
-        dayLabel = new JLabel("", SwingConstants.CENTER);
-        dayLabel.setFont(new Font("Verdana", Font.BOLD, 30));
-        dayLabel.setForeground(new Color(0, 255, 150));
-        dayLabel.setOpaque(true);
-        dayLabel.setBackground(new Color(50, 50, 50));
+        timeLabel = new JLabel();
+        timeLabel.setFont(loadDigitalFont(120)); // Large, digital-style font for time
+        timeLabel.setForeground(Color.WHITE);
+        timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Date Label
-        dateLabel = new JLabel("", SwingConstants.CENTER);
-        dateLabel.setFont(new Font("Verdana", Font.PLAIN, 25));
-        dateLabel.setForeground(new Color(255, 200, 0));
-        dateLabel.setOpaque(true);
-        dateLabel.setBackground(new Color(50, 50, 50));
+        dateLabel = new JLabel();
+        dateLabel.setFont(loadDigitalFont(30)); // Medium font for date
+        dateLabel.setForeground(Color.LIGHT_GRAY);
+        dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Day Label
+        dayLabel = new JLabel();
+        dayLabel.setFont(loadDigitalFont(35)); // Medium font for day
+        dayLabel.setForeground(Color.LIGHT_GRAY);
+        dayLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Add labels to the frame
-        this.add(timeLabel);
-        this.add(dayLabel);
-        this.add(dateLabel);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); // Spacing between components
+
+        gbc.gridy = 0;
+        this.add(dayLabel, gbc);
+
+        gbc.gridy = 1;
+        this.add(timeLabel, gbc);
+
+        gbc.gridy = 2;
+        this.add(dateLabel, gbc);
+
+        // Make frame visible
         this.setVisible(true);
 
-        // Start time update in a separate thread
+        // Start updating time, day, and date
         updateTime();
     }
 
     private void updateTime() {
-        // Background thread for updating time
+        // Background thread for updating time, date, and day
         new Thread(() -> {
             while (true) {
                 try {
@@ -87,5 +96,21 @@ public class MyFrame extends JFrame {
                 }
             }
         }).start();
+    }
+
+    private Font loadDigitalFont(float size) {
+        try {
+            // Load a custom font
+            Font digitalFont = Font.createFont(Font.TRUETYPE_FONT,
+                    getClass().getResourceAsStream("/digital-7.ttf")); // Add your digital font file
+            return digitalFont.deriveFont(size);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Font("Verdana", Font.BOLD, (int) size); // Fallback font
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(MyFrame::new);
     }
 }
