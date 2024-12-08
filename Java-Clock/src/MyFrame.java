@@ -13,7 +13,6 @@ public class MyFrame extends JFrame {
     private final JLabel dayLabel;
 
     public MyFrame() {
-        // Set modern Look and Feel
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -24,37 +23,37 @@ public class MyFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Fliqlo Style Clock");
         this.setUndecorated(true); // No title bar for fullscreen aesthetic
-        this.setSize(600, 400); // Compact size
+        this.setSize(500, 300); // More compact size
         this.getContentPane().setBackground(Color.BLACK); // Fully black background
         this.setLayout(new GridBagLayout());
         this.setResizable(false);
 
-        // Formats for time, date, and day
+        // Formats
         timeFormat = new SimpleDateFormat("hh:mm:ss a");
         dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
         dayFormat = new SimpleDateFormat("EEEE");
 
         // Time Label
         timeLabel = new JLabel();
-        timeLabel.setFont(loadDigitalFont(120)); // Large, digital-style font for time
+        timeLabel.setFont(loadDigitalFont(80)); // Smaller font for compact frame
         timeLabel.setForeground(Color.WHITE);
         timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Date Label
         dateLabel = new JLabel();
-        dateLabel.setFont(loadDigitalFont(30)); // Medium font for date
+        dateLabel.setFont(loadDigitalFont(20)); // Proportional font size
         dateLabel.setForeground(Color.LIGHT_GRAY);
         dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Day Label
         dayLabel = new JLabel();
-        dayLabel.setFont(loadDigitalFont(35)); // Medium font for day
+        dayLabel.setFont(loadDigitalFont(25)); // Proportional font size
         dayLabel.setForeground(Color.LIGHT_GRAY);
         dayLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        // Add labels to the frame
+        // Add labels
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10); // Spacing between components
+        gbc.insets = new Insets(5, 5, 5, 5); // Reduced spacing for smaller frame
 
         gbc.gridy = 0;
         this.add(dayLabel, gbc);
@@ -65,15 +64,13 @@ public class MyFrame extends JFrame {
         gbc.gridy = 2;
         this.add(dateLabel, gbc);
 
-        // Make frame visible
         this.setVisible(true);
 
-        // Start updating time, day, and date
+        // updating time, day, and date
         updateTime();
     }
 
     private void updateTime() {
-        // Background thread for updating time, date, and day
         new Thread(() -> {
             while (true) {
                 try {
@@ -100,7 +97,7 @@ public class MyFrame extends JFrame {
 
     private Font loadDigitalFont(float size) {
         try {
-            // Load a custom font
+
             Font digitalFont = Font.createFont(Font.TRUETYPE_FONT,
                     getClass().getResourceAsStream("/digital-7.ttf")); // Add your digital font file
             return digitalFont.deriveFont(size);
