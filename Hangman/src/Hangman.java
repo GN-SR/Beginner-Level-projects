@@ -145,9 +145,11 @@ public class Hangman extends JFrame implements ActionListener {
                 CustomTools.updateImage(hangmanImage, "resources/" + (incorrectGuesses + 1) + ".png");
 
                 if (incorrectGuesses >= 6){
-
+                    resultLabel.setText("Too Bad, Try Again....?");
+                    resultDialog.setVisible(true);
                 }
             }
+            wordLabel.setText("Word: " + wordChallenge[1]);
         }
     }
     private void createResultDialog(){
