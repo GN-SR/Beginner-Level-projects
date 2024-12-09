@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.Customizer;
 
 public class Hangman extends JFrame implements ActionListener {
@@ -143,9 +145,31 @@ public class Hangman extends JFrame implements ActionListener {
     }
     private void createResultDialog(){
         resultDialog = new JDialog();
+        resultDialog.setTitle("Result");
         resultDialog.setSize(CommonConstants.RESULT_DIALOG_SIZE);
         resultDialog.getContentPane().setBackground(CommonConstants.BACKGROUND_COLOR);
         resultDialog.setResizable(false);
+        resultDialog.setLocationRelativeTo(this);
+        resultDialog.setModal(true);
+        resultDialog.setLayout(new GridLayout(3, 1));
+        resultDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                resetGame();
+            }
+        });
+
+        resultLabel = new JLabel();
+        resultLabel.setForeground(Color.WHITE);
+        resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        wordLabel = new JLabel();
+        wordLabel.setForeground(Color.white);
+        wordLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JButton restartButton = new JButton("Restart");
+        restartButton.setForeground(Color.white);
+        restartButton
     }
 
     private void resetGame(){
