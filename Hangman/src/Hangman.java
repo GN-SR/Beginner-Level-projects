@@ -16,6 +16,7 @@ public class Hangman extends JFrame implements ActionListener {
     private JLabel hangmanImage, categoryLabel, hiddenWordLabel, resultLabel, wordLabel;
     private JButton[] letterButtons;
     private JDialog resultDialog;
+    private Font customFont;
 
     public Hangman(){
         super("Hangman Game");
@@ -29,6 +30,7 @@ public class Hangman extends JFrame implements ActionListener {
         wordDB = new WordDB();
         letterButtons = new JButton[26];
         wordChallenge = wordDB.loadChallenge();
+        customFont = CustomTools.createFont(CommonConstants.FONT_PATH);
         createResultDialog();
 
         addGuiComponents();
@@ -39,6 +41,7 @@ public class Hangman extends JFrame implements ActionListener {
         hangmanImage.setBounds(0, 0, hangmanImage.getPreferredSize().width, hangmanImage.getPreferredSize().height);
 
         categoryLabel = new JLabel(wordChallenge[0]);
+        categoryLabel.setFont(customFont.deriveFont(30f));
         categoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
         categoryLabel.setOpaque(true);
         categoryLabel.setForeground(Color.WHITE);
@@ -53,6 +56,7 @@ public class Hangman extends JFrame implements ActionListener {
 
         //hidden word
         hiddenWordLabel = new JLabel(CustomTools.hideWords(wordChallenge[1]));
+        hiddenWordLabel.setFont(customFont.deriveFont(64f));
         hiddenWordLabel.setForeground(Color.WHITE);
         hiddenWordLabel.setHorizontalAlignment(SwingConstants.CENTER);
         hiddenWordLabel.setBounds(
@@ -75,6 +79,7 @@ public class Hangman extends JFrame implements ActionListener {
         for (char c = 'A'; c <= 'Z'; c++){
             JButton button = new JButton(Character.toString(c));
             button.setBackground(CommonConstants.PRIMARY_COLOR);
+            button.setFont(customFont.deriveFont(22f));
             button.setForeground(Color.white);
             button.addActionListener(this);
 
@@ -86,6 +91,7 @@ public class Hangman extends JFrame implements ActionListener {
 
         //reset button
         JButton resetButton = new JButton("Reset");
+        resetButton.setFont(customFont.deriveFont(22f));
         resetButton.setForeground(Color.WHITE);
         resetButton.setBackground(CommonConstants.SECONDARY_COLOR);
         resetButton.addActionListener(this);
