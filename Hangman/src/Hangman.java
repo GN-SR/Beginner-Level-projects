@@ -108,6 +108,30 @@ public class Hangman extends JFrame implements ActionListener {
         } else if (command.equals("Quit")) {
             dispose();
             return;
+        }else {
+
+            JButton button = (JButton) e.getSource();
+            button.setEnabled(false);
+
+            if(wordChallenge[1].contains(command)){
+                button.setBackground(Color.GREEN);
+
+                char[] hiddenWord = hiddenWordLabel.getText().toCharArray();
+
+                for (int i = 0; i < wordChallenge[1].length(); i++){
+                    if (wordChallenge[1].charAt(i) == command.charAt(0)){
+                        hiddenWord[i] = command.charAt(0);
+                    }
+                }
+                hiddenWordLabel.setText(String.valueOf(hiddenWord));
+            }else {
+                button.setBackground(Color.RED);
+
+                ++incorrectGuesses;
+
+                CustomTools.updateImage(hangmanImage, "resources/" + (incorrectGuesses + 1) + ".png");
+
+            }
         }
     }
 
