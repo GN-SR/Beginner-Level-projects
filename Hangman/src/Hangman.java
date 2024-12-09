@@ -131,6 +131,7 @@ public class Hangman extends JFrame implements ActionListener {
 
                 CustomTools.updateImage(hangmanImage, "resources/" + (incorrectGuesses + 1) + ".png");
 
+
             }
         }
     }
