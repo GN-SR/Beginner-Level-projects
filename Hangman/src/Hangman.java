@@ -107,8 +107,12 @@ public class Hangman extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        if(command.equals("Reset")){
+        if(command.equals("Reset") || command.equals("Restart")){
             resetGame();
+
+            if (command.equals("Restart")){
+                resultDialog.setVisible(false);
+            }
         } else if (command.equals("Quit")) {
             dispose();
             return;
@@ -129,8 +133,9 @@ public class Hangman extends JFrame implements ActionListener {
                 }
                 hiddenWordLabel.setText(String.valueOf(hiddenWord));
 
-                if (!hiddenWordLabel.getText()/contains("*")){
-
+                if (!hiddenWordLabel.getText().contains("*")){
+                    resultLabel.setText("You got it right! ");
+                    resultDialog.setVisible(true);
                 }
             }else {
                 button.setBackground(Color.RED);
@@ -139,7 +144,9 @@ public class Hangman extends JFrame implements ActionListener {
 
                 CustomTools.updateImage(hangmanImage, "resources/" + (incorrectGuesses + 1) + ".png");
 
+                if (incorrectGuesses >= 6){
 
+                }
             }
         }
     }
@@ -169,7 +176,12 @@ public class Hangman extends JFrame implements ActionListener {
 
         JButton restartButton = new JButton("Restart");
         restartButton.setForeground(Color.white);
-        restartButton
+        restartButton.setBackground(CommonConstants.SECONDARY_COLOR);
+        restartButton.addActionListener(this);
+
+        resultDialog.add(resultLabel);
+        resultDialog.add(wordLabel);
+        resultDialog.add(restartButton);
     }
 
     private void resetGame(){
