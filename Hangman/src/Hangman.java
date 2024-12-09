@@ -11,8 +11,9 @@ public class Hangman extends JFrame implements ActionListener {
     private String[] wordChallenge;
 
     private final WordDB wordDB;
-    private JLabel hangmanImage, categoryLabel, hiddenWordLabel;
+    private JLabel hangmanImage, categoryLabel, hiddenWordLabel, resultLabel, wordLabel;
     private JButton[] letterButtons;
+    private JDialog resultDialog;
 
     public Hangman(){
         super("Hangman Game");
@@ -26,6 +27,7 @@ public class Hangman extends JFrame implements ActionListener {
         wordDB = new WordDB();
         letterButtons = new JButton[26];
         wordChallenge = wordDB.loadChallenge();
+        createResultDialog();
 
         addGuiComponents();
     }
@@ -124,6 +126,10 @@ public class Hangman extends JFrame implements ActionListener {
                     }
                 }
                 hiddenWordLabel.setText(String.valueOf(hiddenWord));
+
+                if (!hiddenWordLabel.getText()/contains("*")){
+
+                }
             }else {
                 button.setBackground(Color.RED);
 
@@ -134,6 +140,12 @@ public class Hangman extends JFrame implements ActionListener {
 
             }
         }
+    }
+    private void createResultDialog(){
+        resultDialog = new JDialog();
+        resultDialog.setSize(CommonConstants.RESULT_DIALOG_SIZE);
+        resultDialog.getContentPane().setBackground(CommonConstants.BACKGROUND_COLOR);
+        resultDialog.setResizable(false);
     }
 
     private void resetGame(){
